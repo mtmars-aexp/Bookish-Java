@@ -5,12 +5,7 @@ Use LibraryDatabase;
 CREATE TABLE IF NOT EXISTS Books(
 	BookID int AUTO_INCREMENT PRIMARY KEY,
     BookName varchar(255),
-	AuthorID int, 
-    CONSTRAINT LibraryDatabase_Authors 
-    FOREIGN KEY (AuthorID)
-    REFERENCES Authors(AuthorID)
-    ON UPDATE SET NULL
-    ON DELETE SET NULL,
+	AuthorID int,
     ISBN varchar(255),
     Total int
 );
@@ -41,5 +36,8 @@ CREATE TABLE IF NOT EXISTS Transactions(
     DateOut varchar(255),
     DateIn varchar(255)
 );
+
+/*INSERT INTO Authors(FirstName, LastName)
+VALUES('John', 'Smith');*/
 
 SELECT * FROM Authors;
