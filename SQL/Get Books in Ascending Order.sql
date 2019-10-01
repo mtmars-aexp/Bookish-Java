@@ -1,0 +1,1 @@
+SELECT Books.BookID, Books.BookName, Authors.FirstName FROM Books JOIN Authors ON Books.AuthorID = Authors.AuthorID ORDER BY BookName ASC

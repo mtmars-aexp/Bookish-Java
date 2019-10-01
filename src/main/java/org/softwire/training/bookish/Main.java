@@ -1,6 +1,7 @@
 package org.softwire.training.bookish;
 
 import org.jdbi.v3.core.Jdbi;
+import org.softwire.training.bookish.models.database.Book;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -16,8 +17,8 @@ public class Main {
         String password = "bookish!1";
         String connectionString = "jdbc:mysql://" + hostname + "/" + database + "?user=" + user + "&password=" + password + "&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=GMT&useSSL=false&allowPublicKeyRetrieval=true";
 
-        jdbcMethod(connectionString);
-        //jdbiMethod(connectionString);
+        //jdbcMethod(connectionString);
+        jdbiMethod(connectionString);
     }
 
     private static void jdbcMethod(String connectionString) throws SQLException {
@@ -28,7 +29,7 @@ public class Main {
 
         Connection connection = DriverManager.getConnection(connectionString);
         Statement st = connection.createStatement();
-        ResultSet rs = st.executeQuery("SELECT * FROM Authors");
+        ResultSet rs = st.executeQuery("SELECT Books.BookID, Books.BookName, Authors.FirstName FROM Books JOIN Authors ON Books.AuthorID = Authors.AuthorID ORDER BY BookName ASC");
 
 
         ResultObject resultObject;
@@ -42,7 +43,7 @@ public class Main {
             System.out.println(resultsList.get(i).getUserID());
         }
 
-        
+
     }
 
     public static void getResults(ResultSet rs, List<ResultObject> resultsList) throws SQLException {
@@ -58,7 +59,7 @@ public class Main {
         }
     }
 
-    private static void jdbiMethod(String connectionString) {
+    public static void jdbiMethod(String connectionString) {
         System.out.println("\nJDBI method...");
 
         // TODO: print out the details of all the books (using JDBI)
@@ -66,6 +67,13 @@ public class Main {
         // Use the "Book" class that we've created for you (in the models.database folder)
 
         Jdbi jdbi = Jdbi.create(connectionString);
+
+
+        List<Book> bookList = jdbi.withHandle(handle -> { return handle.createQuery("SELECT * FROM Books ORDER BY BookName ASC").mapToBean(Book.class).list(); });
+        for(int i = 0; i != bookList.size(); i++){
+            System.out.println(bookList.get(i).getBookName());
+        }
+
 
     }
 }
