@@ -70,9 +70,8 @@ public class Main {
 
 
         List<Book> bookList = jdbi.withHandle(handle -> { return handle.createQuery("SELECT * FROM Books ORDER BY BookName ASC").mapToBean(Book.class).list(); });
-        for(int i = 0; i != bookList.size(); i++){
-            System.out.println(bookList.get(i).getBookName());
-        }
+
+        bookList.stream().forEach(x -> System.out.println(x.getBookName()));
 
 
     }
