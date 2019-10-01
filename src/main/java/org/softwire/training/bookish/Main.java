@@ -2,21 +2,16 @@ package org.softwire.training.bookish;
 
 import org.jdbi.v3.core.Jdbi;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.SQLException;
-import java.sql.Statement;
-
-
+import java.sql.*;
 
 
 public class Main {
 
     public static void main(String[] args) throws SQLException {
         String hostname = "localhost";
-        String database = "bookish";
-        String user = "mtmars";
-        String password = "bookish";
+        String database = "LibraryDatabase";
+        String user = "bookish";
+        String password = "bookish!1";
         String connectionString = "jdbc:mysql://" + hostname + "/" + database + "?user=" + user + "&password=" + password + "&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=GMT&useSSL=false&allowPublicKeyRetrieval=true";
 
         jdbcMethod(connectionString);
@@ -31,7 +26,11 @@ public class Main {
 
         Connection connection = DriverManager.getConnection(connectionString);
         Statement st = connection.createStatement();
-        st.executeQuery("SELECT * FROM Library");
+        ResultSet rs = st.executeQuery("SELECT * FROM Library");
+        rs.next();
+        rs.next();
+        System.out.println(rs.getString("LibraryID"));
+        String outPut = rs.getString(1);
 
 
 
