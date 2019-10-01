@@ -3,6 +3,8 @@ package org.softwire.training.bookish;
 import org.jdbi.v3.core.Jdbi;
 
 import java.sql.*;
+import java.util.ArrayList;
+import java.util.List;
 
 
 public class Main {
@@ -26,14 +28,34 @@ public class Main {
 
         Connection connection = DriverManager.getConnection(connectionString);
         Statement st = connection.createStatement();
-        ResultSet rs = st.executeQuery("SELECT * FROM Library");
-        rs.next();
-        rs.next();
-        System.out.println(rs.getString("LibraryID"));
-        String outPut = rs.getString(1);
+        ResultSet rs = st.executeQuery("SELECT * FROM Authors");
 
 
+        ResultObject resultObject;
+        List<ResultObject> resultsList = new ArrayList<>();
 
+        getResults(rs, resultsList);
+
+        for(int i = 0; i != resultsList.size(); i++){
+            System.out.println(resultsList.get(i).getFirstName());
+            System.out.println(resultsList.get(i).getLastName());
+            System.out.println(resultsList.get(i).getUserID());
+        }
+
+        
+    }
+
+    public static void getResults(ResultSet rs, List<ResultObject> resultsList) throws SQLException {
+        while (rs.next()) {
+
+            ResultObject resultObject = new ResultObject();
+
+            resultObject.setUserID(rs.getInt("AuthorID"));
+            resultObject.setFirstName(rs.getString("FirstName"));
+            resultObject.setLastName(rs.getString("LastName"));
+
+            resultsList.add(resultObject);
+        }
     }
 
     private static void jdbiMethod(String connectionString) {
@@ -44,8 +66,6 @@ public class Main {
         // Use the "Book" class that we've created for you (in the models.database folder)
 
         Jdbi jdbi = Jdbi.create(connectionString);
-
-
 
     }
 }
