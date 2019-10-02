@@ -16,22 +16,22 @@ import java.util.List;
 @Controller
 @RequestMapping("/books")
 public class BookController {
-    
+
     private final BookService bookService;
-    
+
     @Autowired
     public BookController(BookService bookService) {
         this.bookService = bookService;
     }
-    
+
     @RequestMapping("")
     ModelAndView books() {
-        
+
         List<Book> allBooks = bookService.getAllBooks();
-        
-        BooksPageModel booksPageeModel = new BooksPageModel();
+
+        BooksPageModel booksPageModel = new BooksPageModel();
         booksPageModel.setBooks(allBooks);
-        
+
         return new ModelAndView("about", "model", booksPageModel);
     }
-    
+
