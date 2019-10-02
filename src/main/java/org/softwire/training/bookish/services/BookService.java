@@ -9,7 +9,7 @@ import java.util.List;
 public class BookService extends DatabaseService {
     public List<Book> getAllBooks() {
         return jdbi.withHandle(handle ->
-                handle.createQuery("SELECT Books.BookID, Books.BookName, Authors.FirstName, Authors.LastName FROM Books JOIN Authors ON Books.AuthorID = Authors.AuthorID ORDER BY BookName ASC")
+                handle.createQuery("SELECT Books.BookID, Books.BookName, Authors.FirstName, Authors.LastName, Books.Total FROM Books JOIN Authors ON Books.AuthorID = Authors.AuthorID ORDER BY BookName ASC")
                         .mapToBean(Book.class)
                         .list()
         );

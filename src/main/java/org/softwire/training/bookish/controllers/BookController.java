@@ -40,12 +40,9 @@ public class BookController {
     @RequestMapping("/add-book")
     RedirectView addBook(@ModelAttribute Book book) {
         
-        book.setAuthorID(1);
-        book.setBookName("Jack the KING");
-        book.setTotal(2);
         bookService.addBook(book);
         
-        return new RedirectView("/book");
+        return new RedirectView("/books");
     }
 }
 

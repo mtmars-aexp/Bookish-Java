@@ -2,6 +2,14 @@ package org.softwire.training.bookish.models.database;
 
 public class Book {
 
+
+    String BookName;
+    int BookID;
+    int AuthorID;
+    String FirstName;
+    String LastName;
+    int Total;
+    
     public String getBookName() {
         return BookName;
     }
@@ -9,8 +17,6 @@ public class Book {
     public void setBookName(String bookName) {
         BookName = bookName;
     }
-
-    String BookName;
 
     public int getBookID() {
         return BookID;
@@ -20,7 +26,6 @@ public class Book {
         BookID = bookID;
     }
 
-    int BookID;
 
     public int getAuthorID() {
         return AuthorID;
@@ -30,7 +35,6 @@ public class Book {
         AuthorID = authorID;
     }
 
-    int AuthorID;
 
     public int getTotal() {
         return Total;
@@ -38,9 +42,8 @@ public class Book {
 
     public void setTotal(int total) {
         Total = total;
+    
     }
-
-    int Total;
 
     public String getFirstName() {
         return FirstName;
@@ -50,7 +53,6 @@ public class Book {
         FirstName = firstName;
     }
 
-    String FirstName;
 
     public String getLastName() {
         return LastName;
@@ -60,6 +62,5 @@ public class Book {
         LastName = lastName;
     }
 
-    String LastName;
 
 }
