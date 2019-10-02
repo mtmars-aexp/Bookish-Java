@@ -6,6 +6,8 @@ import org.softwire.training.bookish.models.database.Book;
 import org.softwire.training.bookish.models.database.Library;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
+import java.util.LinkedHashMap;
 import java.util.List;
 
 import static java.util.stream.Collectors.toList;
@@ -18,8 +20,15 @@ public class LibraryService extends DatabaseService {
                         .registerRowMapper(BeanMapper.factory(Library.class, "l"))
                         .registerRowMapper(BeanMapper.factory(Book.class, "b"))
                         .registerRowMapper(BeanMapper.factory(Author.class, "a"))
-                        
-                        .list()
+                        .reduceRows(new ArrayList<>(), //Keeping running total as iterate over all rows.
+                                (list, rowView) -> {
+                                    Library library = rowView.getRow(Library.class);
+                                    library.setBook(rowView.getRow(Book.class)); //Returns a book with properties found via BeanMapper.factory
+                                    library.setAuthor(rowView.getRow(Author.class));
+                                    list.add(library);
+
+                                    return list;
+                                })
         );
     }
 }

@@ -20,46 +20,18 @@
 <div>
     <table>
         <tr>
-            <th>Book ID</th>
-            <th>Author ID</th>
+            <th>LibraryID</th>
+            <th>Book Name</th>
+            <th>Author Name</th>
         </tr>
 
         <tr th:each = "library : ${model.libraryList}">
-            <td th:text ="${library.book.bookName}"></td>
             <td th:text ="${library.LibraryID}"></td>
+            <td th:text ="${library.book.bookName}"></td>
+            <td th:text ="${library.author.firstName}"></td>
         </tr>
     </table>
 </div>
-
-<h2>Add a book:</h2>
-<form th:action="@{/books/add-book}" method="post">
-    <div class="add-tech-row">
-        <label>
-            <span>Book Name: </span>
-            <input type="text" name="BookName">
-        </label>
-    </div>
-
-    <div class="add-tech-row">
-        <label>
-            <span>Author ID: </span>
-            <input type="text" name="AuthorID">
-        </label>
-    </div>
-
-    <div class="add-tech-row">
-        <label>
-            <span>Total: </span>
-            <input type="text" name="Total">
-        </label>
-    </div>
-
-    <div class="add-tech-row">
-        <span><!-- spacer --></span>
-        <input type="submit" value="Add book" />
-    </div>
-</form>
-
 
 </body>
 
