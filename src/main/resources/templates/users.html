@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<!--@thymesVar id="model" type="org.softwire.training.bookish.models.page.UsersPageModel"-->
+
+<head>
+    <title>Bookish - About Us</title>
+
+    <link rel="stylesheet" href="/styles/general.css"/>
+    <link rel="stylesheet" href="/styles/navbar.css"/>
+</head>
+
+<body>
+
+<div th:replace="fragments/navbar :: navbar">
+    <!-- This element is replaced by the HTML in fragments/navbar.html -->
+</div>
+
+
+<div>
+    <table>
+        <tr>
+            <th>User ID</th>
+            <th>First Name</th>
+            <th>Last Name</th>
+        </tr>
+
+        <tr th:each = "users : ${model.users}">
+            <td th:text ="${users.userID}"></td>
+            <td th:text ="${users.firstName}"></td>
+            <td th:text ="${users.lastName}"></td>
+        </tr>
+    </table>
+</div>
+
+</body>
+
+
+</html>
