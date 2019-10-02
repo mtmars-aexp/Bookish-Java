@@ -27,11 +27,14 @@ public class BookController {
     @RequestMapping("")
     ModelAndView books() {
 
+        System.out.println("AAAAA");
+
         List<Book> allBooks = bookService.getAllBooks();
 
         BooksPageModel booksPageModel = new BooksPageModel();
         booksPageModel.setBooks(allBooks);
 
-        return new ModelAndView("about", "model", booksPageModel);
+        return new ModelAndView("books", "model", booksPageModel);
     }
+}
 

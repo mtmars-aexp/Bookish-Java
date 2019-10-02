@@ -12,6 +12,36 @@ public class Book {
 
     String BookName;
 
+    public int getBookID() {
+        return BookID;
+    }
+
+    public void setBookID(int bookID) {
+        BookID = bookID;
+    }
+
+    int BookID;
+
+    public int getAuthorID() {
+        return AuthorID;
+    }
+
+    public void setAuthorID(int authorID) {
+        AuthorID = authorID;
+    }
+
+    int AuthorID;
+
+    public int getTotal() {
+        return Total;
+    }
+
+    public void setTotal(int total) {
+        Total = total;
+    }
+
+    int Total;
+
     public String getFirstName() {
         return FirstName;
     }
@@ -22,14 +52,14 @@ public class Book {
 
     String FirstName;
 
-    public int getBookID() {
-        return BookID;
+    public String getLastName() {
+        return LastName;
     }
 
-    public void setBookID(int bookID) {
-        BookID = bookID;
+    public void setLastName(String lastName) {
+        LastName = lastName;
     }
 
-    int BookID;
+    String LastName;
 
 }
