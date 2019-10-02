@@ -11,6 +11,9 @@ import java.util.List;
 public class Main {
 
     public static void main(String[] args) throws SQLException {
+
+        System.out.println(System.getenv("DB_NAME"));
+
         String hostname = "localhost";
         String database = "LibraryDatabase";
         String user = "bookish";
