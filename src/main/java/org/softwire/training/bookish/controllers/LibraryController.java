@@ -21,7 +21,6 @@ import java.util.List;
 public class LibraryController {
 
     private final LibraryService libraryService;
-    private final BookService bookService;
 
     @Autowired
     public LibraryController(LibraryService libraryService) {
@@ -34,7 +33,6 @@ public class LibraryController {
         System.out.println("AAAAA");
 
         List<Library> libraryStock = libraryService.getAllLibraryStock();
-        List<Book> books =  bookService.getAllBooks();
 
         LibraryPageModel libraryPageModel = new LibraryPageModel();
         libraryPageModel.setLibraryList(libraryStock);

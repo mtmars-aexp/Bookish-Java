@@ -23,6 +23,8 @@ public class Library {
     public int BookID;
 
     public Book book;
+    public Author author;
+    
 
 
 }

@@ -25,7 +25,7 @@
         </tr>
 
         <tr th:each = "library : ${model.libraryList}">
-            <td th:text ="${library.BookID}"></td>
+            <td th:text ="${library.book.bookName}"></td>
             <td th:text ="${library.LibraryID}"></td>
         </tr>
     </table>
