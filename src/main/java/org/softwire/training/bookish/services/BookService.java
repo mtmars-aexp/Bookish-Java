@@ -14,5 +14,14 @@ public class BookService extends DatabaseService {
                         .list()
         );
     }
+    public void addBook(Book book) {
+        jdbi.useHandle(handle ->
+                handle.createUpdate("INSERT INTO Books ( BookName, AuthorID, Total) VALUES (:BookName, :AuthorID, :Total)")
+                        .bind("BookName", book.getBookName())
+                        .bind("AuthorID", book.getAuthorID())
+                        .bind("Total", book.getTotal())
+                        .execute()
+        );
+    }
     
 }

@@ -34,7 +34,34 @@
         </tr>
 
     </table>
+
 </div>
+
+<h2>Add a book:</h2>
+<form th:action="@{/book/add-book}" method="post">
+    <div class="add-tech-row">
+        <label>
+            <span>Book Name: </span>
+            <input type="text" name="BookName">
+        </label>
+    </div>
+    <div class="add-tech-row">
+        <label>
+            <span>Author ID: </span>
+            <input type="text" name="AuthorID">
+        </label>
+    </div>
+    <div class="add-tech-row">
+        <label>
+            <span>Total: </span>
+            <input type="text" name="Total">
+        </label>
+    </div>
+    <div class="add-tech-row">
+        <span><!-- spacer --></span>
+        <input type="submit" value="Add book" />
+    </div>
+</form>
 
 
 </body>

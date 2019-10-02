@@ -1,6 +1,7 @@
 package org.softwire.training.bookish.controllers;
 
 import org.softwire.training.bookish.models.database.Book;
+import org.softwire.training.bookish.models.database.Technology;
 import org.softwire.training.bookish.models.page.BooksPageModel;
 import org.softwire.training.bookish.services.BookService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -35,6 +36,16 @@ public class BookController {
         booksPageModel.setBooks(allBooks);
 
         return new ModelAndView("books", "model", booksPageModel);
+    }
+    @RequestMapping("/add-book")
+    RedirectView addBook(@ModelAttribute Book book) {
+        
+        book.setAuthorID(1);
+        book.setBookName("Jack the KING");
+        book.setTotal(2);
+        bookService.addBook(book);
+        
+        return new RedirectView("/book");
     }
 }
 
