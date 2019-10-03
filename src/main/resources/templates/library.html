@@ -29,6 +29,10 @@
             <td th:text ="${library.LibraryID}"></td>
             <td th:text ="${library.book.bookName}"></td>
             <td th:text ="${library.author.firstName}"></td>
+            <td>
+                <a th:href="${'/library/delete-library?libraryId=' + library.libraryID}" class="delete-button"> Delete </a>
+            </td>
+
         </tr>
     </table>
 </div>

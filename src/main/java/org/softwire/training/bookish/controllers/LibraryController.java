@@ -38,6 +38,16 @@ public class LibraryController {
         libraryPageModel.setLibraryList(libraryStock);
 
         return new ModelAndView("library", "model", libraryPageModel);
+        
     }
+    
+    @RequestMapping("/delete-library")
+    RedirectView deleteLibrary(@RequestParam int libraryId) {
+        
+        libraryService.deleteLibrary(libraryId);
+        
+        return new RedirectView("/library");
+    }
+    
 }
 

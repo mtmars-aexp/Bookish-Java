@@ -31,4 +31,11 @@ public class LibraryService extends DatabaseService {
                                 })
         );
     }
+    public void deleteLibrary(int LibraryID) {
+        jdbi.useHandle(handle ->
+                handle.createUpdate("DELETE FROM library WHERE LibraryID = :id")
+                        .bind("id", LibraryID)
+                        .execute()
+        );
+    }
 }
