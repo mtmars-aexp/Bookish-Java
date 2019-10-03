@@ -18,11 +18,11 @@
 
 
 <h2>Search for a book:</h2>
-<form th:action="@{'/checkout?BookName=' + BookName}" method="post">
+<form th:action="@{'/checkout?BookName='}" method="post">
     <div class="add-tech-row">
         <label>
             <span>Name of book: </span>
-            <input type="text" name="BookName">
+            <input type="text" name="AAAAA" th:object="*{test}">
         </label>
     </div>
     <div class="add-tech-row">

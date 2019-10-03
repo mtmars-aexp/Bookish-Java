@@ -18,6 +18,7 @@ import java.util.List;
 
 @Controller
 @RequestMapping("/checkout")
+
 public class CheckoutController {
 
     private final CheckoutService checkoutService;
@@ -29,7 +30,7 @@ public class CheckoutController {
 
     @RequestMapping("")
     ModelAndView books(
-            @RequestParam(value = "BookName", required = false) String searchterm
+            @RequestParam(value = "test", required = false) String searchterm
     ) {
 
         List<Library> libraryStock = checkoutService.getSelectedLibraryStock(searchterm);
