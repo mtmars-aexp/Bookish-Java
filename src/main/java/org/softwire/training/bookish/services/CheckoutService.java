@@ -21,7 +21,7 @@ public class CheckoutService extends DatabaseService {
 
         System.out.println(searchterm);
 
-        final String SQL = "SELECT LibraryID l_LibraryID, Books.BookName b_bookName FROM Library LEFT JOIN Books ON Library.BookID = Books.BookID WHERE Books.BookName = '"+searchterm+"'";
+        final String SQL = "SELECT LibraryID l_LibraryID, Books.BookName b_bookName FROM Library LEFT JOIN Books ON Library.BookID = Books.BookID WHERE Books.BookName = ' " + searchterm + " ' ";
 
         return jdbi.withHandle(handle ->
                 handle.createQuery(SQL)
