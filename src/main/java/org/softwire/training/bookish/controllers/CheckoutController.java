@@ -29,11 +29,8 @@ public class CheckoutController {
     }
 
     @RequestMapping("")
-    ModelAndView books(
-            @RequestParam(value = "test", required = false) String searchterm
-    ) {
-
-        List<Library> libraryStock = checkoutService.getSelectedLibraryStock(searchterm);
+    ModelAndView books(@RequestParam String frick){
+        List<Library> libraryStock = checkoutService.getSelectedLibraryStock(frick);
 
         CheckoutPageModel checkoutPageModel = new CheckoutPageModel();
         checkoutPageModel.setLibraryList(libraryStock);

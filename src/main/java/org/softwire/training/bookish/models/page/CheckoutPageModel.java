@@ -14,4 +14,6 @@ public class CheckoutPageModel {
     public void setLibraryList(List<Library> libraryStock) {
         this.libraryStock = libraryStock;
     }
+
+    public String frick;
 }

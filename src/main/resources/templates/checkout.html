@@ -2,6 +2,7 @@
 <html xmlns:th="http://www.thymeleaf.org">
 
 <!--@thymesVar id="model" type="org.softwire.training.bookish.models.page.CheckoutPageModel"-->
+<!--@thymesVar id="frick" type="String"-->
 
 <head>
     <title>Bookish - About Us</title>
@@ -18,11 +19,11 @@
 
 
 <h2>Search for a book:</h2>
-<form th:action="@{'/checkout?BookName='}" method="post">
+<form th:action="@{'/checkout/'}" th:object="${frick}" id="frick" method="post">
     <div class="add-tech-row">
         <label>
             <span>Name of book: </span>
-            <input type="text" name="AAAAA" th:object="*{test}">
+            <input type="text" name="AAAAA">
         </label>
     </div>
     <div class="add-tech-row">

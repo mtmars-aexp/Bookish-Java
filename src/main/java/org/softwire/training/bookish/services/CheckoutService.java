@@ -19,9 +19,7 @@ public class CheckoutService extends DatabaseService {
 
     public List<Library> getSelectedLibraryStock(String searchterm) {
 
-        List<Library> templist = new ArrayList<>();
-
-        searchterm = "Cave Story";
+        System.out.println(searchterm);
 
         final String SQL = "SELECT LibraryID l_LibraryID, Books.BookName b_bookName FROM Library LEFT JOIN Books ON Library.BookID = Books.BookID WHERE Books.BookName = '"+searchterm+"'";
 
@@ -33,6 +31,7 @@ public class CheckoutService extends DatabaseService {
                                 (list, rowView) -> {
                                     Library library = rowView.getRow(Library.class);
                                     library.setBook(rowView.getRow(Book.class)); //Returns a book with properties found via BeanMapper.factory
+                                    list.add(library);
                                     return list;
                                 })
 
