@@ -32,9 +32,25 @@
             <td>
                 <a th:href="${'/library/delete-library?libraryId=' + library.libraryID}" class="delete-button"> Delete </a>
             </td>
-
         </tr>
     </table>
+
+
+    <h2>Add Stock to Library:</h2>
+    <form th:action="@{/library/add-stock}" method="post">
+        <div class="add-tech-row">
+            <label>
+                <span>Book ID: </span>
+                <input type="text" name="BookID">
+            </label>
+        </div>
+
+        <div class="add-tech-row">
+            <span><!-- spacer --></span>
+            <input type="submit" value="Add stock" />
+        </div>
+    </form>
+
 </div>
 
 </body>

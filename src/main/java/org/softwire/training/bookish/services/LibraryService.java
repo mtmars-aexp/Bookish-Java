@@ -38,4 +38,12 @@ public class LibraryService extends DatabaseService {
                         .execute()
         );
     }
+    
+    public void addStock(Library stock) {
+        jdbi.useHandle(handle ->
+                handle.createUpdate("INSERT INTO Library (BookID) VALUES (:BookID)")
+                        .bind("BookID", stock.getBookID())
+                        .execute()
+        );
+    }
 }

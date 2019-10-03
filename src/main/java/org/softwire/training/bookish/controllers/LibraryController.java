@@ -49,5 +49,12 @@ public class LibraryController {
         return new RedirectView("/library");
     }
     
+    @RequestMapping("/add-stock")
+    RedirectView addStock(@ModelAttribute Library stock) {
+        
+        libraryService.addStock(stock);
+        
+        return new RedirectView("/library");
+    }
 }
 
