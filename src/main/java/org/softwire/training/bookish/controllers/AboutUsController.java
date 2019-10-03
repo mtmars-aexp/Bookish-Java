@@ -32,8 +32,6 @@ public class AboutUsController {
         AboutPageModel aboutPageModel = new AboutPageModel();
         aboutPageModel.setTechnologies(allTechnologies);
 
-        System.out.println("HEWWO");
-
         return new ModelAndView("about", "model", aboutPageModel);
     }
 

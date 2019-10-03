@@ -28,7 +28,6 @@ public class BookController {
     @RequestMapping("")
     ModelAndView books() {
 
-        System.out.println("AAAAA");
 
         List<Book> allBooks = bookService.getAllBooks();
 
