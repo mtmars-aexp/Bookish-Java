@@ -12,12 +12,17 @@ import java.util.List;
 
 import static java.util.stream.Collectors.toList;
 
-@Service
-public class LibraryService extends DatabaseService {
 
-    public List<Library> getAllLibraryStock() {
-        return jdbi.withHandle(handle ->
-                handle.createQuery("SELECT LibraryID l_LibraryID, Books.BookName b_bookName, Authors.FirstName a_firstName , Authors.LastName a_lastName FROM Library LEFT JOIN Books ON Library.BookID = Books.BookID LEFT JOIN Authors ON Books.AuthorID = Authors.AuthorID")
+
+@Service
+public class CheckoutService extends DatabaseService {
+
+    public List<Library> getSelectedLibraryStock(String searchterm) {
+
+        List<Library> templist = new ArrayList<>();
+
+        templist = jdbi.withHandle(handle ->
+                handle.createQuery("SELECT LibraryID l_LibraryID, Books.BookName b_bookName, Authors.FirstName a_firstName , Authors.LastName a_lastName FROM Library LEFT JOIN Books ON Library.BookID = Books.BookID LEFT JOIN Authors ON Books.AuthorID = Authors.AuthorID ")
                         .registerRowMapper(BeanMapper.factory(Library.class, "l"))
                         .registerRowMapper(BeanMapper.factory(Book.class, "b"))
                         .registerRowMapper(BeanMapper.factory(Author.class, "a"))
@@ -26,25 +31,26 @@ public class LibraryService extends DatabaseService {
                                     Library library = rowView.getRow(Library.class);
                                     library.setBook(rowView.getRow(Book.class)); //Returns a book with properties found via BeanMapper.factory
                                     library.setAuthor(rowView.getRow(Author.class));
-                                    list.add(library);
-
+                                    System.out.println("GOT THIS FAR 1");
                                     return list;
                                 })
+
         );
-    }
-    public void deleteLibrary(int LibraryID) {
-        jdbi.useHandle(handle ->
-                handle.createUpdate("DELETE FROM library WHERE LibraryID = :id")
-                        .bind("id", LibraryID)
-                        .execute()
-        );
-    }
-    
-    public void addStock(Library stock) {
-        jdbi.useHandle(handle ->
-                handle.createUpdate("INSERT INTO Library (BookID) VALUES (:BookID)")
-                        .bind("BookID", stock.getBookID())
-                        .execute()
-        );
+
+        System.out.println("GOT THIS FAR 2.");
+
+        System.out.println(templist.size());
+
+        for(int i = 0; i != templist.size(); i++){
+            if (!templist.get(i).getBook().getBookName().equals(searchterm)) {
+                System.out.println("Book is: " + templist.get(i).getBook().getBookName());
+                System.out.println("Which apparently isn't: " + searchterm);
+                templist.remove(i);
+                System.out.println("Book yeeted.");
+            }
+        }
+
+        return templist;
+
     }
 }

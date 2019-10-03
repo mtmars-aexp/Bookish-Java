@@ -30,8 +30,6 @@ public class LibraryController {
     @RequestMapping("")
     ModelAndView books() {
 
-        System.out.println("AAAAA");
-
         List<Library> libraryStock = libraryService.getAllLibraryStock();
 
         LibraryPageModel libraryPageModel = new LibraryPageModel();
